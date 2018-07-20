@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
+        <link rel="stylesheet" href="/css/master.css">
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -72,8 +73,8 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}">Entrar</a>
+                        <a href="{{ route('register') }}">Registrarse</a>
                     @endauth
                 </div>
             @endif
@@ -91,10 +92,10 @@
         <script src="{{ asset('js/jquery.js') }}"></script>
 
         <script type="text/javascript">
-        $(document).ready(function(){
-          console.log('aja')
-          });
+          $(document).ready(function(){
+            console.log('aja')
+            });
         </script>
-        
+
     </body>
 </html>
