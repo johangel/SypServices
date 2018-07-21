@@ -1,0 +1,23 @@
+*{
+  /* margin: 0 !important; */
+  /* padding: 0; */
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+h1,h2,h3,h4,h5{
+  margin: 0;
+}
+.header{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 3px;
+  padding: 5px;
+  width: 100%;
+}
+.FormContainer{
+  padding: 0px 10px;
+}
+.registerContainer{
+  margin-top: 50px;
+}

@@ -10,4 +10,9 @@ class PackageController extends Controller
       $products = Package::orderBy('id', 'DESC')->paginate();
       return view('packages.index', compact('packages'));
     }
+
+    public function PackageCreateView(){
+      return view('packages.register');
+
+    }
 }

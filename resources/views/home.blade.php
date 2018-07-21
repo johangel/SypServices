@@ -1,7 +1,9 @@
+<link href="{{ asset('css/home.css') }}"  rel="stylesheet">
+
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -19,5 +21,12 @@
             </div>
         </div>
     </div>
+</div> --}}
+
+
+<div class="welcomeMessageContainer">
+  <h2 class="welcomeMessage">
+    Bienvenido a tu aplicacion de logistica
+  </h2>
 </div>
 @endsection

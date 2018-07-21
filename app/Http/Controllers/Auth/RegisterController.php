@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\userInformation;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+
+use DB;
 
 class RegisterController extends Controller
 {
@@ -64,18 +67,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // dd($data);
-        dd($data);
-        return;
-        // return response()->json([
-        // 'message' => 'user was registered',
-        // 'info' => $request
-        //   ]);
-        // return;
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
+        $adminUser =  User::where('email',$data['admin_email'])->first();
+        $adminInfo =  userInformation::where('user_id', $adminUser['id'])->first();
+
+
+        if($adminInfo['role'] == 3 || $data['admin_password'] == $adminUser['password']){
+
+
+          $result = DB::table('users')->orderBy('id', 'des')->first();
+
+          userInformation::create([
+            'user_id' => $result->id+1,
+            'first_lastname' => $data['first_lastname'],
+            'second_lastname' => $data['second_lastname'],
+            'role_name' => $data['role_name'],
+            'role' => $data['role'],
+            'branch_Office' => $data['branch_Office']
+          ]);
+
+
+          return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+          ]);
+
+        }
+
     }
 }

@@ -77,31 +77,43 @@
   <div class="login-content">
     <div class="login-form-container img-container">
 
-      <div style="padding: 10px;" class="login-form bg-light">
+        <div style="padding: 10px; width: 30%;" class="login-form bg-light">
+          <form method="POST" style="margin-bottom: 0px;" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+            @csrf
 
 
-        <div class="input-group  max-width-350">
-          <div class="input-group-prepend ">
-            <span class="input-group-text width-110" id="inputGroup-sizing-default">Correo</span>
+          <div class="input-group  max-width-350">
+            <div class="input-group-prepend ">
+              <span class="input-group-text width-110" id="inputGroup-sizing-default">Correo</span>
+            </div>
+            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required autofocus aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            @if ($errors->has('email'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
           </div>
-          <input type="emaila" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-        </div>
 
-        <div class="input-group  max-width-350">
-          <div class="input-group-prepend ">
-            <span class="input-group-text width-110" id="inputGroup-sizing-default">Contraseña</span>
+          <div class="input-group  max-width-350 mb-4">
+            <div class="input-group-prepend ">
+              <span class="input-group-text width-110" id="inputGroup-sizing-default">Contraseña</span>
+            </div>
+            <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+            @if ($errors->has('password'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+            @endif
           </div>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+
+          <button style="width: 100%" type="submit" class="btn btn-dark mt-5">
+            Entrar
+          </button>
+          <a style="width: 100%" class="btn btn-light bg-light mt-1 border-dark" href="{{ route('register') }}">
+            Registrar Usuario
+          </a>
+        </form>
         </div>
-
-        <button style="width: 100%" class="btn btn-dark mt-5">
-          Ingresar
-        </button>
-        <button style="width: 100%" class="btn btn-dark mt-1">
-          Registrar Usuario
-        </button>
-      </div>
-
 
     </div>
 

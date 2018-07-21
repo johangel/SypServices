@@ -21,9 +21,31 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css')}}">
 </head>
+<svg width="200px" id="loader"  height="200px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-cube hidden" style="z-index: 1000; position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;">
+  <g transform="translate(25,25)">
+    <rect x="-20" y="-20" width="40" height="40" fill="#f3dcb2">
+      <animateTransform attributeName="transform" type="scale" calcMode="spline" values="1.5;1" keyTimes="0;1" dur="1s" keySplines="0 0.5 0.5 1" begin="-0.3s" repeatCount="indefinite"></animateTransform>
+    </rect>
+  </g>
+  <g transform="translate(75,25)">
+    <rect x="-20" y="-20" width="40" height="40" fill="#cacbc5">
+      <animateTransform attributeName="transform" type="scale" calcMode="spline" values="1.5;1" keyTimes="0;1" dur="1s" keySplines="0 0.5 0.5 1" begin="-0.2s" repeatCount="indefinite"></animateTransform>
+    </rect>
+  </g>
+  <g transform="translate(25,75)">
+    <rect x="-20" y="-20" width="40" height="40" fill="#a5a6a0">
+      <animateTransform attributeName="transform" type="scale" calcMode="spline" values="1.5;1" keyTimes="0;1" dur="1s" keySplines="0 0.5 0.5 1" begin="0s" repeatCount="indefinite"></animateTransform>
+    </rect>
+  </g>
+  <g transform="translate(75,75)">
+    <rect x="-20" y="-20" width="40" height="40" fill="#d3e6ea">
+      <animateTransform attributeName="transform" type="scale" calcMode="spline" values="1.5;1" keyTimes="0;1" dur="1s" keySplines="0 0.5 0.5 1" begin="-0.1s" repeatCount="indefinite"></animateTransform>
+    </rect>
+  </g>
+</svg>
 <body class="bg-white">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark nav-at-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -34,9 +56,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -49,25 +68,26 @@
                                 <a class="nav-link" href="{{ route('register') }}">Registro</a>
                             </li>
                         @else
+                          <ul class="navbar-nav mr-auto">
+                            <li class="">
+                              <a class="nav-link" href="{{ url('/packages/register') }}">Registro paquetes</a>
+                            </li>
+                            <li class="">
+                              <a class="nav-link" href="{{ route('login') }}">Informacion paquetes</a>
+                            </li>
+                            <li class="">
+                              <a class="nav-link" href="{{ route('login') }}">administracion</a>
+                            </li>
+                          </ul>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Desconectar
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -81,7 +101,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

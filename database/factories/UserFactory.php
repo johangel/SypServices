@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,26 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    static $number = 0;
+    $nameArray = ['Jose', 'Sofia'];
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'name' => $nameArray[$number],
+        'email' => $nameArray[$number++].'admin@gmail.com',
+        'password' => Hash::make('secret'), // secret
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\userInformation::class, function(Faker $faker){
+  
+  static $number = 1;
+  return [
+      'user_id' =>  $number++,
+      'role' => 3,
+      'role_name' => 'administrador',
+      'first_lastname' => 'ninguno',
+      'second_lastname' => 'ninguno',
+      'branch_Office' => 'Sucursal Este'
     ];
 });
 

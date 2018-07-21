@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   if(Auth::check()){return view('home');}else{return view('./auth/login');}
 });
 
-Route::resource('Packages', 'PackageController');
+Route::get('/packages/register', 'PackageController@PackageCreateView');
 
 Auth::routes();
 
