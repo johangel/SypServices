@@ -20,3 +20,4 @@ Route::get('/packages/register', 'PackageController@PackageCreateView');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/createOrder', 'OrderController@creatOrder');

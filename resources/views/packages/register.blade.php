@@ -209,7 +209,7 @@
 
 
           <div class="button-group mt-4 col-sm-12">
-            <button onclick="CheckEmptyValues(event)" class="btn btn-dark">Guardar y enviar Correo</button>
+            <button onclick="CreateOrder()" class="btn btn-dark">Guardar y enviar Correo</button>
             <button class="btn btn-danger">Cancelar</button>
           </div>
         </div>
@@ -236,7 +236,7 @@
     'sender-name':'',
     'sender-adress':'',
     'recepcion-date':'',
-    'img':'',
+    'img':null,
     'img_name':'',
     'material-description':'',
     'observations':'',
@@ -275,15 +275,16 @@
 
     reader.onloadend = evet =>{
       $('#'+idTarget)['0'].src = reader.result;
-      request.img = e.target.files[0];
       // identifier : imgId
-      console.log(request.img);
-      console.log(request.img_name);
     };
     if(e.target.files[0]){
       request.img_name = e.target.files[0].name;
       console.log(e.target.files[0]);
       reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (e) => {
+        console.log(e.target.result)
+       request.img = e.target.result;
+      }
     }else{
       $('#' +idTarget).src = "";
     }
@@ -298,6 +299,38 @@
         return;
       }
     }
+  }
+
+  function CreateOrder(){
+    console.log('post');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    var url = "http://localhost:8000/createOrder";
+    var data= request;
+    // $.ajax({
+    //   statusCode: {
+    //     500: function() {
+    //       toastr.error('error');
+    //      }
+    //   },
+    //   type: "POST",
+    //   contentType: false,
+    //   processData: false,
+      // data: JSON.stringify(request),
+    //
+    //   success :function(data, status){
+    //     toastr.success('conexion');
+    //   }
+    // });
+
+    axios.post(url,data).then(response =>{
+      console.log(response.data);
+    })
+
   }
 
   setTimeout(function(){
