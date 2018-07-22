@@ -168,13 +168,6 @@
           </div>
 
           <div class="col-sm-6 mt-4">
-            <label for="inputPassword3" class="col-sm-12 col-form-label">Dimensiones de producto</label>
-            <div>
-              <input type="text" class="form-control" id="product-name" onkeyup="setValue('product-name')">
-            </div>
-          </div>
-
-          <div class="col-sm-6 mt-4">
             <label for="inputPassword3" class="col-sm-12 col-form-label">Peso del producto</label>
             <div>
               <input type="text" class="form-control" id="weight" placeholder="Ej: 10 Kg" onkeyup="setValue('weight')">
@@ -182,7 +175,7 @@
           </div>
 
           <div class="col-sm-6 mt-4">
-            <label for="inputPassword3" class="col-sm-12 col-form-label">dimennsiones del producto</label>
+            <label for="inputPassword3" class="col-sm-12 col-form-label">Dimensiones del producto</label>
             <div>
               <input type="text" class="form-control" id="dimensions" placeholder="Ej: 60x40x50 cm" onkeyup="setValue('dimensions')">
             </div>
@@ -191,7 +184,7 @@
           <div class="col-sm-6 mt-4">
             <label for="inputPassword3" class="col-sm-12 col-form-label">Cantidad de productos a enviar</label>
             <div>
-              <input type="number" id="quantity" onkeyup="setValue('quantity')" onkeydown="preventLetters(event)" class="form-control" >
+              <input type="number" id="quantity" onkeyup="setValue('quantity')" onchange="setValue('quantity')" onkeydown="preventLetters(event)" class="form-control" >
             </div>
           </div>
 
@@ -200,7 +193,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">$</span>
             </div>
-            <input type="number" class="form-control" id="price" onkeyup="setValue('price')" onkeydown="preventLetters(event)">
+            <input type="number" class="form-control" id="price" onkeyup="setValue('price')" onchange="setValue('price')" onkeydown="preventLetters(event)">
             <div class="input-group-append">
               <span class="input-group-text">.00</span>
             </div>
@@ -302,30 +295,8 @@
   }
 
   function CreateOrder(){
-    console.log('post');
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-
     var url = "http://localhost:8000/createOrder";
     var data= request;
-    // $.ajax({
-    //   statusCode: {
-    //     500: function() {
-    //       toastr.error('error');
-    //      }
-    //   },
-    //   type: "POST",
-    //   contentType: false,
-    //   processData: false,
-      // data: JSON.stringify(request),
-    //
-    //   success :function(data, status){
-    //     toastr.success('conexion');
-    //   }
-    // });
 
     axios.post(url,data).then(response =>{
       console.log(response.data);

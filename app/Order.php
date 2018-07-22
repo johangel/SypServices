@@ -6,22 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    $fillabe = [
+    protected $fillable = [
       'receptor-name',
-      'receptor-address',
-      'receptor-email':,
+      'receptor-adress',
+      'receptor-email',
       'scale',
       'payType',
       'zone',
       'sender-name',
       'sender-adress',
       'recepcion-date',
-      'img',
-      'img_name',
-      'material-description',
       'observations',
-      'product-name',
       'quantity',
       'price',
+      'code',
+      'emition-data'
     ];
 }

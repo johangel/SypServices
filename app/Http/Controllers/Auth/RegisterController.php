@@ -69,9 +69,9 @@ class RegisterController extends Controller
     {
         $adminUser =  User::where('email',$data['admin_email'])->first();
         $adminInfo =  userInformation::where('user_id', $adminUser['id'])->first();
-
-
-        if($adminInfo['role'] == 3 && $data['admin_password'] == $adminUser['password']){
+        // dd(password_verify($data['admin_password'], $adminUser['password']));
+        //
+        if($adminInfo['role'] == 3 && password_verify($data['admin_password'], $adminUser['password']) ){
 
 
           $result = DB::table('users')->orderBy('id', 'des')->first();

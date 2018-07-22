@@ -19,8 +19,7 @@ class CreatePackagesTable extends Migration
 
             $table->integer('Order_id')->nullable();
             $table->string('name');
-            $table->float('weight', 8,2);
-            $table->string('weight_unit');
+            $table->string('weight');
             $table->string('dimensions')->nullable();
             $table->string('picture')->nullable();
             $table->string('material');
