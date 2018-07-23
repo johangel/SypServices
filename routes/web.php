@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/packages/register', 'PackageController@PackageCreateView');
+Route::get('/packages/details', 'PackageController@PackageDetailsCreateView');
+
 
 Auth::routes();
 

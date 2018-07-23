@@ -73,7 +73,7 @@
                               <a class="nav-link" href="{{ url('/packages/register') }}">Registro paquetes</a>
                             </li>
                             <li class="">
-                              <a class="nav-link" href="{{ route('login') }}">Informacion paquetes</a>
+                              <a class="nav-link" href="{{ url('/packages/details') }}">Informacion paquetes</a>
                             </li>
                             <li class="">
                               <a class="nav-link" href="{{ route('login') }}">administracion</a>

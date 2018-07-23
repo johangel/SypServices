@@ -147,11 +147,18 @@
           <input onchange="setImage(event, 'img')" type="file" class="form-control-file">
         </div>
 
+
         <img src="paquete.jpg" alt="..." id="img" width="250px;" height="200px;" class="img-thumbnail mx-auto d-block mb-4">
 
 
         <div class="row">
 
+          <div class="col-sm-12 mt-1">
+            <label for="inputPassword3" class="col-sm-12 col-form-label">Nombre del producto</label>
+            <div>
+              <input type="text" class="form-control" id="product-name" onkeyup="setValue('product-name')">
+            </div>
+          </div>
 
           <div class="col-sm-6 mt-1">
             <label for="inputPassword3" class="col-sm-12 col-form-label">descripcion de materiales</label>
@@ -283,23 +290,31 @@
     }
   }
 
-  function CheckEmptyValues(e){
-    e.preventDefault();
+  function CheckEmptyValues(){
     var arrayRequest = Object.keys(request);
     for(var i= 0; i<arrayRequest.length;i++){
       if(request[arrayRequest[i]] == ''){
         console.log(arrayRequest[i] + ' no tiene valor');
-        return;
+        return true;
       }
     }
+    return false;
   }
 
   function CreateOrder(){
     var url = "http://localhost:8000/createOrder";
     var data= request;
 
+    if(CheckEmptyValues()){
+      toastr.error('Llenar todos los campos');
+      return;
+    }
+
     axios.post(url,data).then(response =>{
       console.log(response.data);
+      toastr.success('Se creo la orden ' +  response.data + ' con exito');
+    },error=>{
+      console.log(error);
     })
 
   }

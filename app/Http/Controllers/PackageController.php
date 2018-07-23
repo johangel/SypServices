@@ -13,6 +13,9 @@ class PackageController extends Controller
 
     public function PackageCreateView(){
       return view('packages.register');
+    }
 
+    public function PackageDetailsCreateView(){
+      return view('packages.details');
     }
 }

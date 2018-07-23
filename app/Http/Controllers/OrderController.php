@@ -13,6 +13,25 @@ class OrderController extends Controller
   public function creatOrder(Request $request){
     // dd($request);
 
+    //creacion de imagenes
+      $exploded = explode(',', $request->img);
+
+      $decoded = base64_decode($exploded[1]);
+
+      if(str_contains($exploded[0],'jpeg'))
+
+      $extension = 'jpg';
+
+      else
+
+      $extension = 'png';
+
+      $filename = str_random().'.'.$extension;
+
+      $path = public_path().'/images/'.$filename;
+
+      file_put_contents($path, $decoded);
+
 
     Order::create([
       'receptor-name' => $request['receptor-name'],
@@ -27,58 +46,25 @@ class OrderController extends Controller
       'observations' => $request['observations'],
       'price' => $request['price'],
       'quantity' => $request['quantity'],
-      'code' => rand(1000000,9999999),
+      'code' => $randoCode = rand(1000000,9999999),
       'emition-data' => $ldate = new DateTime('today'),
     ]);
 
-    // 'receptor-name':'',
-    // 'receptor-address':'',
-    // 'receptor-email': '',
-    // 'scale':'',
-    // 'payType':'',
-    // 'zone':'',
-    // 'sender-name':'',
-    // 'sender-adress':'',
-    // 'recepcion-date':'',
-    // 'img':null,
-    // 'img_name':'',
-    // 'material-description':'',
-    // 'observations':'',
-    // 'product-name':'',
-    // 'quantity':'',
-    // 'price':'',
-    // weight
-    // dimensions
-
-    $exploded = explode(',', $request->img);
-
-    $decoded = base64_decode($exploded[1]);
-
-    if(str_contains($exploded[0],'jpeg'))
-
-      $extension = 'jpg';
-
-    else
-
-      $extension = 'png';
-
-    $filename = str_random().'.'.$extension;
-
-    $path = public_path().'/images/'.$filename;
-
-    file_put_contents($path, $decoded);
 
     $result = DB::table('orders')->orderBy('id', 'des')->first();
 
 
+
     Package::create([
       'Order_id' => $result->id,
-      'name' => 'producto que tal',
+      'name' => $request['product-name'],
       'material' => $request['material-description'],
       'picture' => $filename,
       'dimensions' => $request['dimensions'],
       'weight' => $request['weight'],
     ]);
+
+    return($randoCode);
   }
     //
 }
