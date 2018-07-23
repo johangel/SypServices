@@ -147,6 +147,16 @@
           <input onchange="setImage(event, 'img')" type="file" class="form-control-file">
         </div>
 
+        {{-- <div class="input-group mb-4">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile04">
+            <label class="custom-file-label" for="inputGroupFile04">Subir foto del paquete</label>
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Button</button>
+          </div>
+        </div> --}}
+
 
         <img src="paquete.jpg" alt="..." id="img" width="250px;" height="200px;" class="img-thumbnail mx-auto d-block mb-4">
 

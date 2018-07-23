@@ -10,10 +10,10 @@
       <div class="form-group row">
         <label for="inputEmail3" class="col-sm-4 col-form-label">N° Guida de paquete</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="inputEmail3">
+          <input id="CodeOrderInput" type="text" class="form-control" id="inputEmail3">
         </div>
       </div>
-      <button class="btn btn-dark">Buscar</button>
+      <button onclick="searchOrder()" class="btn btn-dark">Buscar</button>
     </div>
 
     <div class="bg-white shadow p-3 mb-5 bg-white rounded">
@@ -98,3 +98,19 @@
 </div>
 
 @endsection
+
+<script type="text/javascript">
+  function searchOrder(){
+    data = {
+      'code':$('#CodeOrderInput').val()
+    };
+   var request = data
+   var url = "http://localhost:8000/searchOrder";
+   console.log(request);
+   axios.post(url,request).then(response =>{
+     console.log(response.data);
+   },error=>{
+     console.log(error);
+   })
+  }
+</script>

@@ -77,7 +77,7 @@
   <div class="login-content">
     <div class="login-form-container img-container">
 
-        <div style="padding: 10px; width: 30%;" class="login-form bg-light">
+        <div style="padding: 10px; width: 25%;" class="login-form bg-dark">
           <form method="POST" style="margin-bottom: 0px;" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
             @csrf
 
@@ -106,10 +106,10 @@
             @endif
           </div>
 
-          <button style="width: 100%" type="submit" class="btn btn-dark mt-5">
+          <button style="width: 100%" type="submit" class="btn btn-light bg-light mt-5">
             Entrar
           </button>
-          <a style="width: 100%" class="btn btn-light bg-light mt-1 border-dark" href="{{ route('register') }}">
+          <a style="width: 100%" class="btn btn-dark mt-1 border-light" href="{{ route('register') }}">
             Registrar Usuario
           </a>
         </form>

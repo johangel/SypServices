@@ -18,8 +18,8 @@ Route::get('/', function () {
 Route::get('/packages/register', 'PackageController@PackageCreateView');
 Route::get('/packages/details', 'PackageController@PackageDetailsCreateView');
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/createOrder', 'OrderController@creatOrder');
+Route::post('/searchOrder', 'OrderController@searchOrder');

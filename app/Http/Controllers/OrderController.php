@@ -66,5 +66,13 @@ class OrderController extends Controller
 
     return($randoCode);
   }
+
+  public function searchOrder(Request $request){
+    // dd($request);
+    $OrderInfo =  Order::where('code',$request->code)->first();
+    // dd($OrderInfo);
+    $PackageInfo = Package::where('Order_id', $OrderInfo->id)->first();
+    dd($PackageInfo);
+  }
     //
 }

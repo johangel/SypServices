@@ -44,7 +44,7 @@
   </g>
 </svg>
 <body class="bg-white">
-    <div id="app">
+    <div class="bg-light" id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark nav-at-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
