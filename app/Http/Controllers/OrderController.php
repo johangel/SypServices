@@ -48,6 +48,8 @@ class OrderController extends Controller
       'observations' => $request['observations'],
       'price' => $request['price'],
       'quantity' => $request['quantity'],
+      'packaging' => $request['packaging'],
+      'specialCares' => $request['specialCares'],
       'code' => $randoCode = rand(1000000,9999999),
       'emition-data' => $ldate = new DateTime('today'),
     ]);

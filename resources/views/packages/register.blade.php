@@ -72,7 +72,7 @@
               </div>
             </div>
 
-            <div class="col-sm-4 pl-3">
+            <div class="col-sm-4 pl-5">
               <h5 class="mb-3">Zona de envio</h5>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="zone" checked="checked" value="Esta Surcusal" id="">
@@ -199,9 +199,23 @@
           </div>
 
           <div class="col-sm-6 mt-4">
+            <label class="col-sm-12 col-form-label">Embalaje</label>
+            <div>
+              <input type="text" class="form-control" id="packaging" placeholder="Descripcion del embalaje" onkeyup="setValue('packaging')">
+            </div>
+          </div>
+
+          <div class="col-sm-6 mt-4">
+            <label class="col-sm-12 col-form-label">Cuidados especiales</label>
+            <div>
+              <input type="text" class="form-control" id="specialCares" placeholder="Cuidados a considerar" onkeyup="setValue('specialCares')">
+            </div>
+          </div>
+
+          <div class="col-sm-6 mt-4">
             <label for="inputPassword3" class="col-sm-12 col-form-label">Cantidad de productos a enviar</label>
             <div>
-              <input type="number" id="quantity" onkeyup="setValue('quantity')" onchange="setValue('quantity')" onkeydown="preventLetters(event)" class="form-control" >
+              <input type="number" id="quantity" onkeyup="setValue('quantity')" min=0 onchange="setValue('quantity')" onkeydown="preventLetters(event)" class="form-control" >
             </div>
           </div>
 
@@ -210,9 +224,9 @@
             <div class="input-group-prepend">
               <span class="input-group-text">$</span>
             </div>
-            <input type="number" class="form-control" id="price" onkeyup="setValue('price')" onchange="setValue('price')" onkeydown="preventLetters(event)">
+            <input type="number" class="form-control" id="price" onkeyup="setValue('price')" min=0 onchange="setValue('price')" onkeydown="preventLetters(event)">
             <div class="input-group-append">
-              <span class="input-group-text">.00</span>
+              <span class="input-group-text">.00$</span>
             </div>
           </div>
 
@@ -253,6 +267,8 @@
     'product-name':'',
     'quantity':'',
     'price':'',
+    'specialCares':'',
+    'packaging':''
   }
 
   function setValue(id){

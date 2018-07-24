@@ -29,6 +29,8 @@ class CreateOrdersTable extends Migration
           $table->integer('price');
           $table->integer('quantity');
           $table->date('emition-data');
+          $table->string('packaging');
+          $table->string('specialCares');
           $table->timestamps();
         });
     }

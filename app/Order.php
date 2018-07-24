@@ -20,6 +20,8 @@ class Order extends Model
       'quantity',
       'price',
       'code',
-      'emition-data'
+      'emition-data',
+      'specialCares',
+      'packaging'
     ];
 }
