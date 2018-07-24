@@ -1,0 +1,10 @@
+.card-body{
+  padding: 0.7rem !important;
+}
+.card-img-top{
+  height: 100px !important;
+}
+
+#Sucursales-img{
+  background: rgba(155,0,0,0.1);
+}

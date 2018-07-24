@@ -22,22 +22,22 @@
       <hr>
       <div class="form-group row">
         <div class="col-sm-12">
-          <input type="text" placeholder="Nombre producto" class="form-control mb-3" id="">
+          <input type="text" placeholder="Nombre producto" id="name" class="form-control mb-3" id="">
         </div>
         <div class="col-sm-12">
-          <input type="text" placeholder="Materiales" class="form-control mb-3" id="">
+          <input type="text" placeholder="Materiales" class="form-control mb-3" id="material">
         </div>
         <div class="col-sm-12">
-          <input type="text" placeholder="Peso" class="form-control mb-3" id="">
+          <input type="text" placeholder="Peso" class="form-control mb-3" id="weight">
         </div>
         <div class="col-sm-12">
-          <input type="text" placeholder="Dimensiones" class="form-control mb-3" id="">
+          <input type="text" placeholder="Dimensiones" class="form-control mb-3" id="dimensions">
         </div>
         <div class="col-sm-12">
-          <input type="text" placeholder="Unidades" class="form-control mb-3" id="">
+          <input type="text" placeholder="Unidades" class="form-control mb-3" id="quantity">
         </div>
         <div class="col-sm-12">
-          <textarea type="text" placeholder="Observaciones" class="form-control mb-3" rows=3 id=""></textarea>
+          <textarea type="text" placeholder="Observaciones" class="form-control mb-3" rows=3 id="observations"></textarea>
         </div>
       </div>
 
@@ -50,7 +50,7 @@
       <div class="form-group row">
         <label for="inputEmail3" class="col-sm-4 col-form-label">Paquete numero</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" >
+          <input type="text" id="id" class="form-control" >
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
         </div>
 
         <div class="col-sm-5">
-          <img src="paquete.jpg" alt="..." width="250px;" height="200px;" class="img-thumbnail mx-auto d-block mb-4">
+          <img id="product_img" alt="..." src="{{asset('images/layAiGllo5MOYYpY.jpg')}}" width="250px;" height="200px;" class="img-thumbnail mx-auto d-block mb-4">
         </div>
 
 
@@ -109,7 +109,18 @@
    console.log(request);
    axios.post(url,request).then(response =>{
      console.log(response.data);
+     $('#id').val(response.data.PackageInfo.id);
+     $('#name').val(response.data.PackageInfo.name);
+     $('#name').val(response.data.PackageInfo.name);
+     $('#material').val(response.data.PackageInfo.material);
+     $('#dimensions').val(response.data.PackageInfo.dimensions);
+     $('#weight').val(response.data.PackageInfo.weight);
+     $('#quantity').val(response.data.OrderInfo.quantity);
+     $('#price').val(response.data.OrderInfo.price);
+     $('#product_img').attr('src',"localhost:8000/images/" + response.data.PackageInfo.picture);
+
    },error=>{
+     toastr.error('No hay una orden con el codigo descrito');
      console.log(error);
    })
   }

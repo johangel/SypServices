@@ -76,7 +76,7 @@
                               <a class="nav-link" href="{{ url('/packages/details') }}">Informacion paquetes</a>
                             </li>
                             <li class="">
-                              <a class="nav-link" href="{{ route('login') }}">administracion</a>
+                              <a class="nav-link" href="{{ url('/administration') }}">administracion</a>
                             </li>
                           </ul>
                             <li class="nav-item dropdown">
@@ -100,6 +100,11 @@
                 </div>
             </div>
         </nav>
+        @if (session('alert'))
+          <div onclick="closeAlert(event)" id="alert" class="alert alert-danger">
+            {{ session('alert') }}
+          </div>
+        @endif
 
         <main>
             @yield('content')
@@ -107,7 +112,19 @@
     </div>
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
-
+    <script type="text/javascript">
+      function GotoAdminView(){
+        var url = "http://localhost:8000/administration";
+        axios.post(url).then(response =>{
+          // console.log(response.data);
+        },error=>{
+          console.log(error);
+        })
+      }
+      function closeAlert(event){
+        event.target.classList.add('hidden');
+      }
+    </script>
 
 
 </body>

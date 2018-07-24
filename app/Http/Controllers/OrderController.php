@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Order;
+use App\userInformation;
 use Illuminate\Http\Request;
 use App\Package;
 use DB;
 use DateTime;
-
+use Session;
+use Auth;
 class OrderController extends Controller
 {
 
@@ -72,7 +74,22 @@ class OrderController extends Controller
     $OrderInfo =  Order::where('code',$request->code)->first();
     // dd($OrderInfo);
     $PackageInfo = Package::where('Order_id', $OrderInfo->id)->first();
-    dd($PackageInfo);
+    // dd($PackageInfo);
+    // dd($PackageInfo);
+    $json = ([
+      'OrderInfo' => $OrderInfo,
+      'PackageInfo' => $PackageInfo
+      ]);
+    // dd($json);
+    return($json);
   }
     //
+  public function goToAdministratioView(){
+    $session_id = \Auth::user()->id;
+    $adminInfo =  userInformation::where('user_id', $session_id)->first();
+    if($adminInfo['role'] > 1){
+      return view('packages.Administration');
+    }
+    return redirect()->back()->with('alert', 'No posees los permisos para entrar a esta vista!');
+  }
 }

@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/packages/register', 'PackageController@PackageCreateView');
 Route::get('/packages/details', 'PackageController@PackageDetailsCreateView');
+Route::get('/administration', 'OrderController@goToAdministratioView');
 
 Auth::routes();
 

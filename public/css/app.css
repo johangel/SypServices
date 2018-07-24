@@ -45,7 +45,15 @@
 body{
   overflow-x: hidden !important;
 }
-
+#alert{
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  z-index: 2;
+}
+#alert:hover{
+  cursor: pointer;
+}
 
 html {
   font-family: sans-serif;
@@ -10481,4 +10489,11 @@ a.text-dark:focus {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 780px) {
+  .pl-5, .pr-5{
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
 }
