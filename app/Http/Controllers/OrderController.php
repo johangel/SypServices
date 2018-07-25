@@ -68,12 +68,32 @@ class OrderController extends Controller
       'weight' => $request['weight'],
     ]);
 
-    return($randoCode);
+    $json = [
+      'codeOrder' => $randoCode,
+      'idOrder' => $result->id
+    ];
+    return($json);
   }
 
   public function searchOrder(Request $request){
     // dd($request);
     $OrderInfo =  Order::where('code',$request->code)->first();
+    // dd($OrderInfo);
+    $PackageInfo = Package::where('Order_id', $OrderInfo->id)->first();
+    // dd($PackageInfo);
+    // dd($PackageInfo);
+    $json = ([
+      'OrderInfo' => $OrderInfo,
+      'PackageInfo' => $PackageInfo
+      ]);
+    // dd($json);
+    return($json);
+  }
+
+
+  public function searchOrderById(Request $request){
+    // dd($request);
+    $OrderInfo =  Order::where('id',$request->id)->first();
     // dd($OrderInfo);
     $PackageInfo = Package::where('Order_id', $OrderInfo->id)->first();
     // dd($PackageInfo);
@@ -94,4 +114,6 @@ class OrderController extends Controller
     }
     return redirect()->back()->with('alert', 'No posees los permisos para entrar a esta vista!');
   }
+
+
 }

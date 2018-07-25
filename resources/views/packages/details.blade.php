@@ -48,9 +48,9 @@
 
     <div class="bg-white shadow  p-3 mb-4 bg-white rounded">
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-4 col-form-label">Paquete numero</label>
+        <label for="inputEmail3"  class="col-sm-4 col-form-label">Paquete numero</label>
         <div class="col-sm-8">
-          <input type="text" id="id" class="form-control" >
+          <input type="text" onfocusout="searchOrderById()" id="id" class="form-control" >
         </div>
       </div>
     </div>
@@ -99,6 +99,8 @@
 @endsection
 
 <script type="text/javascript">
+
+
   function searchOrder(){
     data = {
       'code':$('#CodeOrderInput').val()
@@ -136,4 +138,44 @@
      console.log(error);
    })
   }
+
+  function searchOrderById(){
+    data = {
+      'id':$('#id').val()
+    };
+   var request = data
+   var url = "http://localhost:8000/searchOrderById";
+   console.log(request);
+   axios.post(url,request).then(response =>{
+     Res = response.data;
+     console.log(response.data);
+     $('#CodeOrderInput').val(response.data.PackageInfo.code);
+     $('#name').val(response.data.PackageInfo.name);
+     $('#name').val(response.data.PackageInfo.name);
+     $('#material').val(response.data.PackageInfo.material);
+     $('#dimensions').val(response.data.PackageInfo.dimensions);
+     $('#weight').val(response.data.PackageInfo.weight);
+     $('#quantity').val(response.data.OrderInfo.quantity + ' Unidad(es)');
+     $('#observations').val(response.data.OrderInfo.observations);
+     $('#price').val(response.data.OrderInfo.price);
+     $('#packaging').val(response.data.OrderInfo.packaging);
+     $('#specialCares').val(response.data.OrderInfo.specialCares);
+     $('#product_img').attr('src',"http://localhost:8000/images/" + response.data.PackageInfo.picture);
+     $('#route_img').attr('src',"http://localhost:8000/images/map.jpg");
+
+     var stringForStatus = 'Nombre de Emisor: ' + response.data.OrderInfo['sender-name'] + ', ' +
+                            response.data.OrderInfo['sender-adress']  +  '<br> Nombre de receptor: ' + response.data.OrderInfo['receptor-name'] + ', ' +
+                             response.data.OrderInfo['receptor-adress'] + '<br> Fecha en que se realizo el envio : ' + response.data.OrderInfo['emition-data']
+                             + '<br> Fecha en que llegara a su destino: ' + response.data.OrderInfo['recepcion-date'] + '<br> Destino final del paquete : ' +  response.data.OrderInfo['zone'] +
+                             '<br> Escala de envio: ' + response.data.OrderInfo['scale'] + '<br> Costo del envio: ' + response.data.OrderInfo.price + '$<br> Tipo de pago: ' +
+                             response.data.OrderInfo.payType;
+     $('#status').html(stringForStatus);
+
+   },error=>{
+     toastr.error('No hay una orden con el id descrito');
+     console.log(error);
+   })
+  }
+
+  // $( "#id" ).blur(function() {searchOrderById();});
 </script>

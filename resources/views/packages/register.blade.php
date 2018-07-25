@@ -338,7 +338,7 @@
 
     axios.post(url,data).then(response =>{
       console.log(response.data);
-      toastr.success('Se creo la orden ' +  response.data + ' con exito');
+      toastr.success('Se creo la orden con codigo: ' +  response.data.codeOrder + ' e Id :' + response.data.idOrder +' con exito');
     },error=>{
       console.log(error);
     })

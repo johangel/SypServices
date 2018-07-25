@@ -11,7 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery.js') }}"></script> --}}
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -110,8 +112,6 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script type="text/javascript">
       function GotoAdminView(){
         var url = "http://localhost:8000/administration";

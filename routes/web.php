@@ -24,3 +24,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/createOrder', 'OrderController@creatOrder');
 Route::post('/searchOrder', 'OrderController@searchOrder');
+Route::post('/searchOrderById', 'OrderController@searchOrderById');
