@@ -168,12 +168,12 @@
          }
       },
       type: "POST",
-      url : "http://localhost:8000/register",
+      url : "http://127.0.0.1:8000/register",
       data: request,
       success :function(data, status){
         toastr.success('Usuario creado con exito');
         setTimeout(function(){
-          window.location.replace("http://localhost:8000/home");
+          window.location.replace("http://127.0.0.1:8000/home");
         }, 2000);
       }
     });

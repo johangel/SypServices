@@ -106,7 +106,7 @@
       'code':$('#CodeOrderInput').val()
     };
    var request = data
-   var url = "http://localhost:8000/searchOrder";
+   var url = "http://127.0.0.1:8000/searchOrder";
    console.log(request);
    axios.post(url,request).then(response =>{
      Res = response.data;
@@ -144,7 +144,7 @@
       'id':$('#id').val()
     };
    var request = data
-   var url = "http://localhost:8000/searchOrderById";
+   var url = "http://127.0.0.1:8000/searchOrderById";
    console.log(request);
    axios.post(url,request).then(response =>{
      Res = response.data;

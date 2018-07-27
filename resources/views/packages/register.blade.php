@@ -328,7 +328,7 @@
   }
 
   function CreateOrder(){
-    var url = "http://localhost:8000/createOrder";
+    var url = "http://127.0.0.1:8000/createOrder";
     var data= request;
 
     if(CheckEmptyValues()){
